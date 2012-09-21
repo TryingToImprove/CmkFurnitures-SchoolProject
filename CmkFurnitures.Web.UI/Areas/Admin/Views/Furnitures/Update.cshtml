@@ -1,0 +1,120 @@
+﻿@model UpdateFurnituresViewModel
+@{
+    ViewBag.Title = "Update";
+    ViewBag.JavaScriptValidation = true;
+}
+<div class="page-header">
+    <h2>
+        Rediger @Model.Furniture.Name</h2>
+</div>
+<ul class="nav nav-tabs" id="furniture-update-tabs">
+    <li><a href="#home" data-target="#home" data-toggle="tab">Information</a> </li>
+    <li><a href="#images" data-target="#images" data-toggle="tab">Billeder</a> </li>
+    <li><a href="#delete" data-target="#delete" data-toggle="tab">Slet møbel</a> </li>
+</ul>
+<div class="tab-content">
+    <div id="home" class="tab-pane">
+        @using (Html.BeginForm("Update", "Furnitures", new { id = Model.Furniture.FurnitureId }, FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            @Html.PartialFor(model => model.FurnitureForm, "_FurnitureForm")
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                    Gem ændringer</button>
+                <button type="button" class="btn" onclick="location.href='@Url.Action("Index", "Furnitures")'">
+                    Annuler</button>
+            </div>
+        }
+    </div>
+    <div id="images" class="tab-pane">
+        <div>
+            @using (Html.BeginForm("UploadImage", "Furnitures", new { id = Model.Furniture.FurnitureId }, FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-inline" }))
+            {
+                <div class="control-group">
+                    <input type="file" name="File" class="input-xxlarge" />
+                    <label class="checkbox">
+                        <input type="checkbox" name="ProfileImage" value="true">
+                        Gør til profilbillede
+                    </label>
+                </div>
+                if (ViewContext.ViewData.ModelState.Any(x => x.Key == "File"))
+                {
+                <div>
+                    @Html.ValidationMessage("File")
+                </div>
+                <button type="submit" class="btn btn-warning">
+                    Upload billede</button>
+                }
+                else
+                {
+                <button type="submit" class="btn btn-success">
+                    Upload billede</button>
+                }
+            }
+        </div>
+        <hr />
+        @{ 
+            int numberOfImagesPerRow = 4; 
+        }
+        @for (int i = 0; i < Convert.ToInt32(Math.Ceiling((decimal)Model.Furniture.Images.Count() / numberOfImagesPerRow)); i++)
+        {
+            <div class="row-fluid show-grid">
+                @foreach (var image in Model.Furniture.Images.Skip(i * numberOfImagesPerRow).Take(numberOfImagesPerRow))
+                {
+                    var resizedImage = image.GetResizedImage(300, 225);
+                    <div class="span3">
+                        <img src="@Url.Content(resizedImage.VirtualPath)" class="img-polaroid full-width" alt="@Model.Furniture.Name" />
+                        @if (Model.Furniture.ProfileImageId.Equals(image.ImageId))
+                        {
+                            <a href="#" class="btn btn-info disabled" rel="tooltip" title="Dette billede er valgt som profilbillede der bliver vidst flest gange på siden">
+                                Valgt som profilbillede</a>
+                            <a href="#" class="deleteBtn btn btn-danger disabled" rel="tooltip" title="Det er ikke muligt at slette et profilbillede. Upload et nyt og vælg det som profilbillede">
+                                Slet</a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("UpdateImage", "Furnitures", new { id = Model.Furniture.FurnitureId, imageId = image.ImageId })" class="btn">
+                                Vælg som profilbillede</a>
+                            <a href="@Url.Action("DeleteImage", "Furnitures", new { id = Model.Furniture.FurnitureId, imageId = image.ImageId })" class="btn btn-danger">
+                                Slet</a>
+                        }
+                    </div>
+                }
+            </div>
+        }
+    </div>
+    <div id="delete" class="tab-pane">
+        @using (Html.BeginForm("Delete", "Furnitures", new { id = Model.Furniture.FurnitureId }))
+        {
+            <p>
+                Er du sikker? Kan ikke fortrydes
+            </p>
+                
+            <button type="submit" class="btn btn-danger">
+                Ja, slet</button>
+                
+                
+            <button id="cancel-deleted" class="btn">
+                Annuler</button>
+
+        }
+    </div>
+</div>
+@section CustomJavascript{
+    <script>
+        $(function () {
+            $('#cancel-deleted').click(function () {
+                $('#furniture-update-tabs a:first').tab('show')
+                return false;
+            });
+            $('.show-grid').tooltip({
+                selector: "a[rel=tooltip]"
+            })
+
+            if (document.location.hash) {
+                $('#furniture-update-tabs a[data-target=' + document.location.hash + ']').tab('show');
+            } else {
+                $('#furniture-update-tabs a:first').tab('show');
+            }
+        })
+    </script>
+}

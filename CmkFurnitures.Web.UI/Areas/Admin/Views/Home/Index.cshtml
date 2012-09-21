@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Index";
+
+    var user = (CmkFurnitures.Security.ICustomIdentity)User.Identity;
+}
+<img src="@Url.Content("/Content/Funny-monkey.jpg")" alt="Sjov abe" class="img-rounded pull-right" />
+<h2>
+    Hej @user.FirstName @user.LastName</h2>
+<p>
+    Her har du mulighed for at administere CMK Møblers hjemmeside.<br />
+    Du kan blandt andet:<br />
+    <ul>
+        <li>Oprette og redigere møbler </li>
+        <li>Skrive nyheder </li>
+        <li>Opdatere informationer omkring CMK Møbler </li>
+    </ul>
+</p>
+<p>
+    For at komme igang skal du vælge et punkt på menuen til venstre
+</p>

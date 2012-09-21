@@ -1,0 +1,20 @@
+﻿@model CmkFurnitures.Web.UI.Areas.Admin.Models.CreateAdminsViewModel
+@{
+    ViewBag.Title = "Create";
+}
+<div class="page-header">
+    <h2>
+        Opret bruger</h2>
+</div>
+@using (Html.BeginForm("Create", "Admins", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+
+    @Html.PartialFor(x => x.AdminForm, "_AdminForm");
+    @Html.ValidationSummary(true)
+    <div class="form-actions">
+        <p>
+            <button type="submit" class="btn btn-primary">
+                Opret bruger</button>
+        </p>
+    </div>
+}

@@ -1,0 +1,18 @@
+﻿@model IndexArticlesViewModel
+<div class="article-list">
+    @foreach (var article in Model.Articles)
+    {
+        <article>
+        <time>@article.CreationDate.ToLongDateString()</time>
+        <h2>
+            @article.Title</h2>
+        <p>
+            @article.Text
+        </p>
+
+        <p class="author-description">
+            Af <span class="author">@article.Author.FullName</span>
+        </p>
+    </article>
+    }
+</div>

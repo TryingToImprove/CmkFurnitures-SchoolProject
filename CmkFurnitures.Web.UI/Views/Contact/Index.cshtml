@@ -1,0 +1,26 @@
+﻿@model IndexContactViewModel
+@{
+    ViewBag.JavaScriptValidation = true;
+}
+<section class="contact-opening-hours">
+    <h2>Åbningstider</h2>
+    <p>
+        @foreach (string item in Model.StoreDetails.GetPrettyOpeningHours())
+        {
+        <span>@item</span>
+        }
+    </p>
+</section>
+@if (TempData["Send"] != null && (bool)TempData["Send"] == true)
+{
+    <section class="contact-form">
+        <h2>Sendt</h2>
+        <p>
+            Beskeden er blevet sendt til os, og vi svarer tilbage hurtigst muligt
+        </p>
+    </section>
+}
+else
+{
+    Html.RenderPartial("_SendMailForm", Model.MailForm);
+}

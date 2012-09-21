@@ -1,0 +1,59 @@
+﻿@model FurnitureFormViewModel
+@Html.ValidationSummary(true)
+<div class="control-group">
+    <label class="control-label" for="inputEmail">
+        Varenummer</label>
+    <div class="controls">
+        @Html.EditorFor(model => model.PartNumber)
+        @Html.ValidationMessageFor(model => model.PartNumber)
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="inputEmail">
+        Navn</label>
+    <div class="controls">
+        @Html.EditorFor(model => model.Name)
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="inputEmail">
+        Designer</label>
+    <div class="controls">
+        @Html.DropDownListFor(model => model.DesignerId, new SelectList(Model.Designers, "Value", "Text", Model.DesignerId), "Vælg designer...")
+        @Html.ValidationMessageFor(model => model.DesignerId)
+        <a href="@Url.Action("Create", "Designers")">Tilføj en ny designer</a>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="inputEmail">
+        Type</label>
+    <div class="controls">
+        @Html.DropDownListFor(model => model.FurnitureTypeId, new SelectList(Model.Types, "Value", "Text", Model.FurnitureTypeId), "Vælg type..")
+        @Html.ValidationMessageFor(model => model.FurnitureTypeId)
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="inputEmail">
+        Årgang</label>
+    <div class="controls">
+        @Html.EditorFor(model => model.DesignYear)
+        @Html.ValidationMessageFor(model => model.DesignYear)
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="inputEmail">
+        Pris</label>
+    <div class="controls">
+        @Html.EditorFor(model => model.Price)
+        @Html.ValidationMessageFor(model => model.Price)
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="inputEmail">
+        Beskrivelse</label>
+    <div class="controls">
+        @Html.TextAreaFor(model => model.Text, new { rows = 4, @class = "input-xxlarge" })
+        @Html.ValidationMessageFor(model => model.Text)
+    </div>
+</div>

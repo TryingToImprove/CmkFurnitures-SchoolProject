@@ -1,0 +1,13 @@
+﻿@{
+    if (
+        User.Identity.IsAuthenticated &&
+        ((CmkFurnitures.Security.ICustomIdentity)User.Identity).IsSystemUser)
+    {
+        Layout = "~/Areas/Admin/Views/Shared/_SystemLayout.cshtml";
+    }
+    else
+    {
+
+        Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    }
+}

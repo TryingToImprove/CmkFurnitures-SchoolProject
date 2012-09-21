@@ -1,0 +1,27 @@
+﻿@model SearchResultFurnitureViewModel
+<div class="furniture-search-results">
+    @foreach (var item in Model.Results)
+    {
+        <section>
+            <a href="@Url.Action("Show", "Furniture", new { id = item.PartNumber })">
+                <img src="@Url.Content(item.ProfileImage.VirtualPath)" alt="sofa" />
+                <div>
+                    <h2>
+                        @item.Name</h2>
+                    <p>
+                        @if (item.Text.Length > 187)
+                        {
+                            @item.Text.Substring(0, 183) <text> ...</text>
+                        }
+                        else
+                        {
+                            @item.Text
+                        }
+                    </p>
+                </div>
+            </a>
+        </section>
+        <div class="seperator">
+        </div>
+    }
+</div>

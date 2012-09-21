@@ -1,0 +1,7 @@
+﻿@model IndexFurnituresViewModel
+<div class="page-header">
+    @Html.ActionLink("Opret nyt møbel", "Create", null, new { @class = "btn btn-success  pull-right" })
+    <h2>
+        Oversigt over møbler</h2>
+</div>
+@{ Html.RenderPartial("_FurnituresTableView", Model.Furnitures); }

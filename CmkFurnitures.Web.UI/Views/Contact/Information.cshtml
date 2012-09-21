@@ -1,0 +1,25 @@
+﻿@model ContactInformationViewModel
+<section class="contact-information">
+    <h2>Kontakt oplysninger</h2>
+    <div class="container">
+        <address>
+            <span>@Model.Name</span>
+            <span>@Model.Road</span>
+            <span>@Model.Town</span>
+        </address>
+        <dl>
+            <dt>
+                Telefon
+            </dt>
+            <dd>
+                @Model.Telephone
+            </dd>
+            <dt>
+                Telefax
+            </dt>
+            <dd>
+                @Model.Mobilephone
+            </dd>
+        </dl>
+    </div>
+</section>

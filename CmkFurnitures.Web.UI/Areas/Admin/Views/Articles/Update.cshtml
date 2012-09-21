@@ -1,0 +1,19 @@
+﻿@model UpdateArticlesViewModel
+@{
+    ViewBag.Title = "Create";
+    ViewBag.JavaScriptValidation = true;
+}
+<div class="page-header">
+    <h2>
+        Rediger artikel</h2>
+</div>
+@using (Html.BeginForm("Update", "Articles", new { id = Model.Article.ArticleId }, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.PartialFor(x => x.ArticleForm, "_ArticleForm");
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">
+            Gem ændringer</button>
+        <button type="button" class="btn" onclick="location.href='@Url.Action("Index", "Articles")'">
+            Annuler</button>
+    </div>
+}

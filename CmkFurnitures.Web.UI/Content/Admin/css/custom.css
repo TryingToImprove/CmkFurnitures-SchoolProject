@@ -1,0 +1,19 @@
+.create-new
+{
+    float: right;
+}
+
+.show-grid:first-child
+{
+    margin-top: 0px;
+}
+
+.show-grid
+{
+    margin-top: 20px;
+}
+
+.full-width
+{
+    margin:0px auto 7px auto;
+}

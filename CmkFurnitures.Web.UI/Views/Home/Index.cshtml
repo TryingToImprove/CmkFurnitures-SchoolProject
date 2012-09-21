@@ -1,0 +1,13 @@
+﻿@model IndexHomeViewModel
+<div class="article-list front">
+    @foreach (var article in Model.Articles)
+    {
+        <article>
+        <h2>
+            @article.Title</h2>
+        <p>
+            @article.Text
+        </p>
+    </article>
+    }
+</div>

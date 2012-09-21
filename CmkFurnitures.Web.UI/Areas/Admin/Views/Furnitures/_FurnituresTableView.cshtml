@@ -1,0 +1,52 @@
+﻿@model IEnumerable<CmkFurnitures.Domain.Furniture>
+<table class="table table-stripe table-hover">
+    <tr>
+        <th>
+        </th>
+        <th>
+            Navn
+        </th>
+        <th>
+            Designer
+        </th>
+        <th>
+            År
+        </th>
+        <th>
+            Pris
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="@Url.Content(item.ProfileImage.GetResizedImage(120, 90).VirtualPath)" alt="@item.Name" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Designer.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DesignYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FurnitureType.Name)
+            </td>
+            <td>
+                <a href="@Url.Action("Update", "Furnitures", new { id = item.FurnitureId })">Rediger</a>
+                |
+                <a href="@Url.Action("Update", "Furnitures", new { id = item.FurnitureId })#delete">Slet</a>
+            </td>
+        </tr>
+    }
+</table>

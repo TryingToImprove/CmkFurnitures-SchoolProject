@@ -1,0 +1,25 @@
+﻿@model RandomFurnitureViewModel
+<section class="highlighted-furniture">
+    <div class="container">
+        <img src="@Url.Content(Model.Furniture.ProfileImage.GetResizedImage(120, 90).VirtualPath)" alt="møbel" />
+        <dl>
+            <dt>Møbel serie: </dt>
+            <dd>
+                @Model.Furniture.FurnitureType.Name
+            </dd>
+            <dt>Designer: </dt>
+            <dd>
+                @Model.Furniture.Designer.FullName
+            </dd>
+            <dt>Design år: </dt>
+            <dd>
+                @Model.Furniture.DesignYear
+            </dd>
+            <dt>Pris: </dt>
+            <dd>
+                @string.Format("{0,10:#,##0.00} kr.", Model.Furniture.Price)
+            </dd>
+        </dl>
+        <a href="@Url.Action("Show", "Furniture", new { id = Model.Furniture.PartNumber })">mere info</a>
+    </div>
+</section>

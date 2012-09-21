@@ -1,0 +1,28 @@
+﻿@model CreateFurnituresViewModel
+@{
+    ViewBag.Title = "Update";
+}
+<div class="page-header">
+    <h2>
+        Opret møbel</h2>
+</div>
+@using (Html.BeginForm("Create", "Furnitures", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.PartialFor(model => model.FurnitureForm, "_FurnitureForm")
+
+    <div class="control-group">
+        <label class="control-label">
+            Profilbillede:
+        </label>
+        <div class="controls">
+            <input type="file" name="ProfileImage" id="ProfileImage" />
+        </div>
+    </div>
+    
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">
+            Gem ændringer</button>
+        <button type="button" class="btn" onclick="location.href='@Url.Action("Index", "Furnitures")'">
+            Annuler</button>
+    </div>
+}

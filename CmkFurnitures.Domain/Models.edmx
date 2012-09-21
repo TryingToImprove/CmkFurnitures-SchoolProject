@@ -1,0 +1,589 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CmkFurnituresDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="CmkFurnituresDbModelStoreContainer">
+          <EntitySet Name="Admins" EntityType="CmkFurnituresDbModel.Store.Admins" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Articles" EntityType="CmkFurnituresDbModel.Store.Articles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Authors" EntityType="CmkFurnituresDbModel.Store.Authors" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Designers" EntityType="CmkFurnituresDbModel.Store.Designers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FurnitureImages" EntityType="CmkFurnituresDbModel.Store.FurnitureImages" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Furnitures" EntityType="CmkFurnituresDbModel.Store.Furnitures" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FurnitureType" EntityType="CmkFurnituresDbModel.Store.FurnitureType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Images" EntityType="CmkFurnituresDbModel.Store.Images" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ImageSizes" EntityType="CmkFurnituresDbModel.Store.ImageSizes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Subscribers" EntityType="CmkFurnituresDbModel.Store.Subscribers" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Articles_Authors1" Association="CmkFurnituresDbModel.Store.FK_Articles_Authors1">
+            <End Role="Authors" EntitySet="Authors" />
+            <End Role="Articles" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Authors_Admins" Association="CmkFurnituresDbModel.Store.FK_Authors_Admins">
+            <End Role="Admins" EntitySet="Admins" />
+            <End Role="Authors" EntitySet="Authors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FurnitureImages_Furnitures" Association="CmkFurnituresDbModel.Store.FK_FurnitureImages_Furnitures">
+            <End Role="Furnitures" EntitySet="Furnitures" />
+            <End Role="FurnitureImages" EntitySet="FurnitureImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FurnitureImages_Images" Association="CmkFurnituresDbModel.Store.FK_FurnitureImages_Images">
+            <End Role="Images" EntitySet="Images" />
+            <End Role="FurnitureImages" EntitySet="FurnitureImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Furnitures_Designers" Association="CmkFurnituresDbModel.Store.FK_Furnitures_Designers">
+            <End Role="Designers" EntitySet="Designers" />
+            <End Role="Furnitures" EntitySet="Furnitures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Furnitures_FurnitureType" Association="CmkFurnituresDbModel.Store.FK_Furnitures_FurnitureType">
+            <End Role="FurnitureType" EntitySet="FurnitureType" />
+            <End Role="Furnitures" EntitySet="Furnitures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageSizes_Images" Association="CmkFurnituresDbModel.Store.FK_ImageSizes_Images">
+            <End Role="Images" EntitySet="Images" />
+            <End Role="ImageSizes" EntitySet="ImageSizes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="IsSystemUser" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Articles">
+          <Key>
+            <PropertyRef Name="ArticleId" />
+          </Key>
+          <Property Name="ArticleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="Text" Type="text" Nullable="false" />
+          <Property Name="AuthorId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Authors">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="AdminId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Designers">
+          <Key>
+            <PropertyRef Name="DesignerId" />
+          </Key>
+          <Property Name="DesignerId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="FurnitureImages">
+          <Key>
+            <PropertyRef Name="FurnitureId" />
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="FurnitureId" Type="int" Nullable="false" />
+          <Property Name="ImageId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Furnitures">
+          <Key>
+            <PropertyRef Name="FurnitureId" />
+          </Key>
+          <Property Name="PartNumber" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="DesignerId" Type="int" Nullable="false" />
+          <Property Name="DesignYear" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="FurnitureTypeId" Type="int" Nullable="false" />
+          <Property Name="ProfileImageId" Type="int" Nullable="false" />
+          <Property Name="Text" Type="text" Nullable="false" />
+          <Property Name="FurnitureId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="FurnitureType">
+          <Key>
+            <PropertyRef Name="FurnitureTypeId" />
+          </Key>
+          <Property Name="FurnitureTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Path" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="FileName" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ImageSizes">
+          <Key>
+            <PropertyRef Name="ImageSizeId" />
+          </Key>
+          <Property Name="ImageId" Type="int" Nullable="false" />
+          <Property Name="Path" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="FileName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Width" Type="int" Nullable="false" />
+          <Property Name="Height" Type="int" Nullable="false" />
+          <Property Name="ImageSizeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Subscribers">
+          <Key>
+            <PropertyRef Name="SubscriberId" />
+          </Key>
+          <Property Name="SubscriberId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Secret" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_Articles_Authors1">
+          <End Role="Authors" Type="CmkFurnituresDbModel.Store.Authors" Multiplicity="1" />
+          <End Role="Articles" Type="CmkFurnituresDbModel.Store.Articles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authors">
+              <PropertyRef Name="AdminId" />
+            </Principal>
+            <Dependent Role="Articles">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Authors_Admins">
+          <End Role="Admins" Type="CmkFurnituresDbModel.Store.Admins" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Authors" Type="CmkFurnituresDbModel.Store.Authors" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Admins">
+              <PropertyRef Name="AdminId" />
+            </Principal>
+            <Dependent Role="Authors">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FurnitureImages_Furnitures">
+          <End Role="Furnitures" Type="CmkFurnituresDbModel.Store.Furnitures" Multiplicity="1" />
+          <End Role="FurnitureImages" Type="CmkFurnituresDbModel.Store.FurnitureImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Furnitures">
+              <PropertyRef Name="FurnitureId" />
+            </Principal>
+            <Dependent Role="FurnitureImages">
+              <PropertyRef Name="FurnitureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FurnitureImages_Images">
+          <End Role="Images" Type="CmkFurnituresDbModel.Store.Images" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FurnitureImages" Type="CmkFurnituresDbModel.Store.FurnitureImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Images">
+              <PropertyRef Name="ImageId" />
+            </Principal>
+            <Dependent Role="FurnitureImages">
+              <PropertyRef Name="ImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Furnitures_Designers">
+          <End Role="Designers" Type="CmkFurnituresDbModel.Store.Designers" Multiplicity="1" />
+          <End Role="Furnitures" Type="CmkFurnituresDbModel.Store.Furnitures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Designers">
+              <PropertyRef Name="DesignerId" />
+            </Principal>
+            <Dependent Role="Furnitures">
+              <PropertyRef Name="DesignerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Furnitures_FurnitureType">
+          <End Role="FurnitureType" Type="CmkFurnituresDbModel.Store.FurnitureType" Multiplicity="1" />
+          <End Role="Furnitures" Type="CmkFurnituresDbModel.Store.Furnitures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FurnitureType">
+              <PropertyRef Name="FurnitureTypeId" />
+            </Principal>
+            <Dependent Role="Furnitures">
+              <PropertyRef Name="FurnitureTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImageSizes_Images">
+          <End Role="Images" Type="CmkFurnituresDbModel.Store.Images" Multiplicity="1" />
+          <End Role="ImageSizes" Type="CmkFurnituresDbModel.Store.ImageSizes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Images">
+              <PropertyRef Name="ImageId" />
+            </Principal>
+            <Dependent Role="ImageSizes">
+              <PropertyRef Name="ImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CmkFurnituresDbModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="CmkFurnituresDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="CmkFurnituresDbModel.Admin" />
+          <EntitySet Name="Articles" EntityType="CmkFurnituresDbModel.Article" />
+          <EntitySet Name="Authors" EntityType="CmkFurnituresDbModel.Author" />
+          <EntitySet Name="Designers" EntityType="CmkFurnituresDbModel.Designer" />
+          <EntitySet Name="Furnitures" EntityType="CmkFurnituresDbModel.Furniture" />
+          <EntitySet Name="FurnitureTypes" EntityType="CmkFurnituresDbModel.FurnitureType" />
+          <EntitySet Name="Images" EntityType="CmkFurnituresDbModel.Image" />
+          <EntitySet Name="ImageSizes" EntityType="CmkFurnituresDbModel.ImageSize" />
+          <EntitySet Name="Subscribers" EntityType="CmkFurnituresDbModel.Subscriber" />
+          <AssociationSet Name="FK_Authors_Admins" Association="CmkFurnituresDbModel.FK_Authors_Admins">
+            <End Role="Admin" EntitySet="Admins" />
+            <End Role="Author" EntitySet="Authors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Articles_Authors1" Association="CmkFurnituresDbModel.FK_Articles_Authors1">
+            <End Role="Author" EntitySet="Authors" />
+            <End Role="Article" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Furnitures_Designers" Association="CmkFurnituresDbModel.FK_Furnitures_Designers">
+            <End Role="Designer" EntitySet="Designers" />
+            <End Role="Furniture" EntitySet="Furnitures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Furnitures_FurnitureType" Association="CmkFurnituresDbModel.FK_Furnitures_FurnitureType">
+            <End Role="FurnitureType" EntitySet="FurnitureTypes" />
+            <End Role="Furniture" EntitySet="Furnitures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageSizes_Images" Association="CmkFurnituresDbModel.FK_ImageSizes_Images">
+            <End Role="Image" EntitySet="Images" />
+            <End Role="ImageSize" EntitySet="ImageSizes" />
+          </AssociationSet>
+          <AssociationSet Name="FurnitureImages" Association="CmkFurnituresDbModel.FurnitureImages">
+            <End Role="Furniture" EntitySet="Furnitures" />
+            <End Role="Image" EntitySet="Images" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Type="Int32" Name="AdminId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Author" Relationship="CmkFurnituresDbModel.FK_Authors_Admins" FromRole="Admin" ToRole="Author" />
+          <Property Type="Boolean" Name="IsSystemUser" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="ArticleId" />
+          </Key>
+          <Property Type="Int32" Name="ArticleId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="false" />
+          <Property Type="String" Name="Text" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="AuthorId" Nullable="false" />
+          <NavigationProperty Name="Author" Relationship="CmkFurnituresDbModel.FK_Articles_Authors1" FromRole="Article" ToRole="Author" />
+        </EntityType>
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="AdminId" Nullable="false" />
+          <NavigationProperty Name="Admin" Relationship="CmkFurnituresDbModel.FK_Authors_Admins" FromRole="Author" ToRole="Admin" />
+          <NavigationProperty Name="Articles" Relationship="CmkFurnituresDbModel.FK_Articles_Authors1" FromRole="Author" ToRole="Article" />
+        </EntityType>
+        <EntityType Name="Designer">
+          <Key>
+            <PropertyRef Name="DesignerId" />
+          </Key>
+          <Property Type="Int32" Name="DesignerId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Furnitures" Relationship="CmkFurnituresDbModel.FK_Furnitures_Designers" FromRole="Designer" ToRole="Furniture" />
+        </EntityType>
+        <EntityType Name="Furniture">
+          <Key>
+            <PropertyRef Name="FurnitureId" />
+          </Key>
+          <Property Type="String" Name="PartNumber" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="DesignerId" Nullable="false" />
+          <Property Type="Int32" Name="DesignYear" Nullable="false" />
+          <Property Type="Decimal" Name="Price" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="FurnitureTypeId" Nullable="false" />
+          <Property Type="Int32" Name="ProfileImageId" Nullable="false" />
+          <Property Type="String" Name="Text" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="FurnitureId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Designer" Relationship="CmkFurnituresDbModel.FK_Furnitures_Designers" FromRole="Furniture" ToRole="Designer" />
+          <NavigationProperty Name="FurnitureType" Relationship="CmkFurnituresDbModel.FK_Furnitures_FurnitureType" FromRole="Furniture" ToRole="FurnitureType" />
+          <NavigationProperty Name="Images" Relationship="CmkFurnituresDbModel.FurnitureImages" FromRole="Furniture" ToRole="Image" />
+        </EntityType>
+        <EntityType Name="FurnitureType">
+          <Key>
+            <PropertyRef Name="FurnitureTypeId" />
+          </Key>
+          <Property Type="Int32" Name="FurnitureTypeId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Furnitures" Relationship="CmkFurnituresDbModel.FK_Furnitures_FurnitureType" FromRole="FurnitureType" ToRole="Furniture" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Type="Int32" Name="ImageId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Path" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FileName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ImageSizes" Relationship="CmkFurnituresDbModel.FK_ImageSizes_Images" FromRole="Image" ToRole="ImageSize" />
+          <NavigationProperty Name="Furnitures" Relationship="CmkFurnituresDbModel.FurnitureImages" FromRole="Image" ToRole="Furniture" />
+        </EntityType>
+        <EntityType Name="ImageSize">
+          <Key>
+            <PropertyRef Name="ImageSizeId" />
+          </Key>
+          <Property Type="Int32" Name="ImageId" Nullable="false" />
+          <Property Type="String" Name="Path" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FileName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Width" Nullable="false" />
+          <Property Type="Int32" Name="Height" Nullable="false" />
+          <Property Type="Int32" Name="ImageSizeId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Image" Relationship="CmkFurnituresDbModel.FK_ImageSizes_Images" FromRole="ImageSize" ToRole="Image" />
+        </EntityType>
+        <EntityType Name="Subscriber">
+          <Key>
+            <PropertyRef Name="SubscriberId" />
+          </Key>
+          <Property Type="Int32" Name="SubscriberId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Secret" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Authors_Admins">
+          <End Type="CmkFurnituresDbModel.Admin" Role="Admin" Multiplicity="1" />
+          <End Type="CmkFurnituresDbModel.Author" Role="Author" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="AdminId" />
+            </Principal>
+            <Dependent Role="Author">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Articles_Authors1">
+          <End Type="CmkFurnituresDbModel.Author" Role="Author" Multiplicity="1" />
+          <End Type="CmkFurnituresDbModel.Article" Role="Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="AdminId" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Furnitures_Designers">
+          <End Type="CmkFurnituresDbModel.Designer" Role="Designer" Multiplicity="1" />
+          <End Type="CmkFurnituresDbModel.Furniture" Role="Furniture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Designer">
+              <PropertyRef Name="DesignerId" />
+            </Principal>
+            <Dependent Role="Furniture">
+              <PropertyRef Name="DesignerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Furnitures_FurnitureType">
+          <End Type="CmkFurnituresDbModel.FurnitureType" Role="FurnitureType" Multiplicity="1" />
+          <End Type="CmkFurnituresDbModel.Furniture" Role="Furniture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FurnitureType">
+              <PropertyRef Name="FurnitureTypeId" />
+            </Principal>
+            <Dependent Role="Furniture">
+              <PropertyRef Name="FurnitureTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImageSizes_Images">
+          <End Type="CmkFurnituresDbModel.Image" Role="Image" Multiplicity="1" />
+          <End Type="CmkFurnituresDbModel.ImageSize" Role="ImageSize" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Image">
+              <PropertyRef Name="ImageId" />
+            </Principal>
+            <Dependent Role="ImageSize">
+              <PropertyRef Name="ImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FurnitureImages">
+          <End Type="CmkFurnituresDbModel.Furniture" Role="Furniture" Multiplicity="*" />
+          <End Type="CmkFurnituresDbModel.Image" Role="Image" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CmkFurnituresDbModelStoreContainer" CdmEntityContainer="CmkFurnituresDbEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="CmkFurnituresDbModel.Admin">
+              <MappingFragment StoreEntitySet="Admins">
+                <ScalarProperty Name="IsSystemUser" ColumnName="IsSystemUser" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Articles">
+            <EntityTypeMapping TypeName="CmkFurnituresDbModel.Article">
+              <MappingFragment StoreEntitySet="Articles">
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Authors">
+            <EntityTypeMapping TypeName="CmkFurnituresDbModel.Author">
+              <MappingFragment StoreEntitySet="Authors">
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Designers">
+            <EntityTypeMapping TypeName="CmkFurnituresDbModel.Designer">
+              <MappingFragment StoreEntitySet="Designers">
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="DesignerId" ColumnName="DesignerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Furnitures">
+            <EntityTypeMapping TypeName="CmkFurnituresDbModel.Furniture">
+              <MappingFragment StoreEntitySet="Furnitures">
+                <ScalarProperty Name="FurnitureId" ColumnName="FurnitureId" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="ProfileImageId" ColumnName="ProfileImageId" />
+                <ScalarProperty Name="FurnitureTypeId" ColumnName="FurnitureTypeId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="DesignYear" ColumnName="DesignYear" />
+                <ScalarProperty Name="DesignerId" ColumnName="DesignerId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PartNumber" ColumnName="PartNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FurnitureTypes">
+            <EntityTypeMapping TypeName="CmkFurnituresDbModel.FurnitureType">
+              <MappingFragment StoreEntitySet="FurnitureType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FurnitureTypeId" ColumnName="FurnitureTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="CmkFurnituresDbModel.Image">
+              <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImageSizes">
+            <EntityTypeMapping TypeName="CmkFurnituresDbModel.ImageSize">
+              <MappingFragment StoreEntitySet="ImageSizes">
+                <ScalarProperty Name="ImageSizeId" ColumnName="ImageSizeId" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subscribers">
+            <EntityTypeMapping TypeName="CmkFurnituresDbModel.Subscriber">
+              <MappingFragment StoreEntitySet="Subscribers">
+                <ScalarProperty Name="Secret" ColumnName="Secret" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="SubscriberId" ColumnName="SubscriberId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FurnitureImages" TypeName="CmkFurnituresDbModel.FurnitureImages" StoreEntitySet="FurnitureImages">
+            <EndProperty Name="Image">
+              <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+            </EndProperty>
+            <EndProperty Name="Furniture">
+              <ScalarProperty Name="FurnitureId" ColumnName="FurnitureId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Models">
+        <EntityTypeShape EntityType="CmkFurnituresDbModel.Admin" Width="1.5" PointX="2.75" PointY="6.125" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="CmkFurnituresDbModel.Article" Width="1.5" PointX="7.25" PointY="5.875" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="CmkFurnituresDbModel.Author" Width="1.5" PointX="5" PointY="6" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="CmkFurnituresDbModel.Designer" Width="1.5" PointX="0.75" PointY="1.75" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="CmkFurnituresDbModel.Furniture" Width="1.5" PointX="3" PointY="1" Height="3.3263964843750036" />
+        <EntityTypeShape EntityType="CmkFurnituresDbModel.FurnitureType" Width="1.5" PointX="0.75" PointY="5.875" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="CmkFurnituresDbModel.Image" Width="1.5" PointX="5.25" PointY="1.625" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="CmkFurnituresDbModel.ImageSize" Width="1.5" PointX="7.5" PointY="1.5" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="CmkFurnituresDbModel.Subscriber" Width="1.5" PointX="0.75" PointY="8.75" Height="1.5956835937500031" />
+        <AssociationConnector Association="CmkFurnituresDbModel.FK_Authors_Admins" >
+          <ConnectorPoint PointX="4.25" PointY="7.0189925130208337" />
+          <ConnectorPoint PointX="5" PointY="7.0189925130208337" />
+        </AssociationConnector>
+        <AssociationConnector Association="CmkFurnituresDbModel.FK_Articles_Authors1" >
+          <ConnectorPoint PointX="6.5" PointY="6.9901432291666659" />
+          <ConnectorPoint PointX="7.25" PointY="6.9901432291666659" />
+        </AssociationConnector>
+        <AssociationConnector Association="CmkFurnituresDbModel.FK_Furnitures_Designers" >
+          <ConnectorPoint PointX="2.25" PointY="2.6439925130208337" />
+          <ConnectorPoint PointX="3" PointY="2.6439925130208337" />
+        </AssociationConnector>
+        <AssociationConnector Association="CmkFurnituresDbModel.FK_Furnitures_FurnitureType" >
+          <ConnectorPoint PointX="2.25" PointY="5.96875" />
+          <ConnectorPoint PointX="4.40625" PointY="5.96875" />
+          <ConnectorPoint PointX="4.40625" PointY="4.3263964843750031" />
+        </AssociationConnector>
+        <AssociationConnector Association="CmkFurnituresDbModel.FK_ImageSizes_Images" >
+          <ConnectorPoint PointX="6.75" PointY="2.6151432291666694" />
+          <ConnectorPoint PointX="7.5" PointY="2.6151432291666694" />
+        </AssociationConnector>
+        <AssociationConnector Association="CmkFurnituresDbModel.FurnitureImages" >
+          <ConnectorPoint PointX="4.5" PointY="2.6151432291666694" />
+          <ConnectorPoint PointX="5.25" PointY="2.6151432291666694" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

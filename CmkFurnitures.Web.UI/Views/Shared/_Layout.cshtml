@@ -1,0 +1,101 @@
+﻿    @model CmkFurnitures.Web.UI.Models.RootViewModel
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+        <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+        <script src="@Url.Content("~/Scripts/modernizr-1.7.min.js")" type="text/javascript"></script>
+    </head>
+    <body>
+        <div class="nav-container">
+            <nav>
+            @foreach (var menuItem in Model.MenuItems)
+            {
+                string active = (menuItem.Selected) ? "active" : null;
+                <a href="@Url.Action(menuItem.Action, menuItem.Controller, menuItem.Parameters)" class="@active">@menuItem.Name</a>
+            }
+            </nav>
+        </div>
+        <div class="left-content">
+            <h1>
+                @Model.CurrentPageHeader</h1>
+            @{ Html.RenderAction("RandomFurniture", "Furniture"); }
+            <section class="newsletter">
+                <h2>Tilmeld nyhedsbrev</h2>
+                <div class="container">
+                    <form id="subscriber-form">
+                        <input type="email" />
+                        <button id="btnAddSubscriber">Tilmeld</button>
+                        <button id="btnRemoveSubscriber">Frameld</button>
+
+                        <div id="lblSubscriberResult"></div>
+                    </form>
+                </div>
+            </section>
+            @{ Html.RenderAction("Information", "Contact"); }
+        </div>
+        <div class="right-content">
+            @RenderBody()
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        @if (ViewBag.JavaScriptValidation != null & ViewBag.JavaScriptValidation)
+        {
+            <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+            <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+        }
+        @RenderSection("CustomJavascript", false)
+        <script>
+            $(function () {
+
+                function callSubscriber(action, email, successFunc) {
+                    jQuery.post(
+                        "/Subscriber/" + action,
+                        { email: email },
+                        successFunc
+                    );
+                }
+
+                var $email = $("#subscriber-form > input[type='email']"),
+                    $btnAddSubscriber = $("#subscriber-form > #btnAddSubscriber"),
+                    $btnRemoveSubscriber = $("#subscriber-form > #btnRemoveSubscriber"),
+                    $lblResult = $("#subscriber-form > #lblSubscriberResult");
+
+                $lblResult.hide();
+
+                $("#subscriber-form").submit(function (e) {
+
+                    $btnAddSubscriber.trigger("click");
+
+                    return false;
+                });
+
+                $btnRemoveSubscriber.click(function (e) {
+
+                    if ($email.val() != "") {
+                        callSubscriber("Remove", $email.val(), function (data) {
+                            $lblResult.text($email.val() + " er blevet frameldt nyhedsbrevet");
+                            $lblResult.show();
+                        });
+                    }
+
+                    return false;
+
+                });
+
+                $btnAddSubscriber.click(function (e) {
+
+                    if ($email.val() != "") {
+                        callSubscriber("Add", $email.val(), function (data) {
+                            $lblResult.text($email.val() + " er blevet tilmeldt nyhedsbrevet");
+                            $lblResult.show();
+                        });
+                    }
+
+                    return false;
+
+                });
+            });
+        </script>
+    </body>
+    </html>

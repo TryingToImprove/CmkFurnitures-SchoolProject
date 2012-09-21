@@ -1,0 +1,527 @@
+html, body
+{
+    font-size: 10px;
+    font-family: Verdana, Helvetica, Sans-Serif;
+    color: #464646;
+    background-color: #fff;
+    line-height: 14px;
+    margin: 0px;
+}
+
+header, footer, nav, article, address, section
+{
+    display: block;
+}
+
+a
+{
+    color: #464646;
+    text-decoration: none;
+}
+
+a:hover
+{
+    text-decoration: underline;
+}
+
+h1, h2
+{
+    color: #ff7200;
+    font-size: 10pt;
+    padding: 3px 15px;
+    margin: 0px;
+    font-weight: normal;
+}
+
+img
+{
+    border: 0px;
+}
+
+input, button, textarea
+{
+    border: 1px solid #959494;
+    font-family: Verdana;
+    padding: 4px;
+    color: #464646;
+    font-size: 10px;
+    box-sizing: border-box;
+}
+
+textarea
+{
+    box-sizing: border-box;
+}
+
+dl
+{
+    margin: 0px;
+}
+dl > dt
+{
+    display: block;
+    font-weight: bold;
+}
+dl > dd
+{
+    display: block;
+    margin: 0px;
+}
+
+p
+{
+    margin: 0px;
+}
+
+/* Common styles */
+form
+{
+}
+
+form > .control-group
+{
+    overflow: auto;
+    margin-bottom: 10px;
+}
+
+form > .control-group input
+{
+    padding: 2px;
+}
+
+form > .control-group > label
+{
+    margin-top: 0px;
+    width: 130px;
+    float: left;
+}
+
+form > .control-group > .controls
+{
+    width: 333px;
+    float: right;
+    overflow: auto;
+}
+
+form > .control-group > .controls > input, form > .control-group > .controls > textarea
+{
+    width: 200px;
+}
+
+form > .control-group > .controls > button.inline-search
+{
+    padding: 2px 10px;
+}
+
+form > .control-group > .controls > select
+{
+    width: 200px;
+}
+
+form > .control-group > .controls > .checkbox-group
+{
+    float: left;
+    width: 120px;
+}
+
+form > .control-group > .controls > .inline-group
+{
+    float: left;
+    width: 120px;
+}
+
+form > .control-group > .controls > .inline-group > label
+{
+    float: left;
+    width: 30px;
+    margin-top: 2px;
+}
+
+form > .control-group > .controls > .inline-group > input
+{
+    margin-left: 3px;
+    width: 40px;
+}
+
+form > .control-buttons-right
+{
+    padding-left: 336px;
+    overflow: hidden;
+}
+
+form > .control-buttons-right > button
+{
+    padding: 2px 10px;
+}
+
+form > .no-inline
+{
+    padding-left: 0px;
+    width: 336px;
+    text-align: right;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    color: #ff0000;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+/* Navigation
+-----------------------------------------------------------*/
+
+div.nav-container
+{
+    background-color: #717171;
+    padding-top: 54px;
+}
+
+div.nav-container nav
+{
+    background-color: #FFF;
+    font-size: 11px;
+    font-family: Verdana;
+    border-top: 1px solid #ff7200;
+    overflow: hidden;
+    margin-bottom: 37px;
+}
+
+div.nav-container nav > a
+{
+    display: block;
+    float: left;
+    color: #FF7200;
+    padding: 8px 15px;
+    margin-left: -1px;
+    border-right: 1px solid #ff7200;
+}
+
+div.nav-container nav > a:first-child
+{
+    margin-left: 0px;
+    border-left: 1px solid #ff7200;
+}
+
+div.nav-container nav > a.active
+{
+    border-bottom: 2px solid #ff7200;
+}
+
+/* FRONT */
+.front > article
+{
+    border-bottom: 0px !important;
+    margin-bottom: 30px;
+}
+
+/* Left content
+-----------------------------------------------------------*/
+
+div.left-content
+{
+    float: left;
+    width: 176px;
+}
+
+div.left-content h1, div.left-content h2
+{
+    border-bottom: 1px dotted #ff7200 !important;
+    padding-left: 15px !important;
+}
+
+div.left-content .container
+{
+    padding: 0px 15px;
+}
+
+div.left-content > section
+{
+    margin-bottom: 32px;
+}
+
+div.left-content > section.highlighted-furniture
+{
+    overflow: hidden;
+}
+
+div.left-content > section.highlighted-furniture > div > img
+{
+    width: 120px;
+    height: 90px;
+}
+
+div.left-content > section.highlighted-furniture > div > a
+{
+    color: #ff7200;
+    float: right;
+    text-decoration: underline;
+}
+
+div.left-content > section.newsletter > div > button
+{
+    margin-top: 8px;
+    width: 90px;
+}
+
+div.left-content > section.newsletter > div > input[type='text']
+{
+    margin-top: 8px;
+    width: 120px;
+}
+
+div.left-content > section.newsletter > h2
+{
+    margin-bottom: 13px;
+}
+
+div.left-content > section.contact-information
+{
+}
+
+div.left-content > section.contact-information > div > address > span
+{
+    display: block;
+}
+
+div.left-content > section.contact-information > div > address
+{
+    margin-top: 12px;
+    margin-bottom: 21px;
+}
+
+
+
+/* Right/main content
+-----------------------------------------------------------*/
+
+div.right-content
+{
+    margin-left: 29px;
+    float: left;
+    width: 463px;
+    border-top: 1px dotted #ff7200;
+    margin-top: 20px;
+    padding-top: 14px;
+}
+
+div.right-content h1, div.right-content h2
+{
+    padding-left: 0px !important;
+    border-bottom: 0px !important;
+}
+
+div.right-content > .article-list
+{
+}
+
+div.right-content > .article-list > article
+{
+    margin-top: 11px;
+    border-bottom: 1px dotted #ff7200;
+    overflow: hidden;
+}
+
+div.right-content > .article-list > article:first-child
+{
+    margin-top: 0px;
+}
+
+div.right-content > .article-list > article > h2
+{
+    border-bottom: 0px !important;
+    margin-bottom: 15px;
+}
+
+div.right-content > .article-list > article > time
+{
+    float: right;
+}
+
+div.right-content > .article-list > article > .author-description
+{
+    margin-top: 10px;
+    float: right;
+    color: #cecece;
+    margin-bottom: 20px;
+}
+
+/* FURNITURE DISPLAY */
+.funiture-display
+{
+}
+
+.funiture-display > div.images
+{
+    width: 300px;
+    float: left;
+}
+
+.funiture-display > div.images > img
+{
+    width: 300px;
+    height: 225px;
+}
+
+.funiture-display > div.images > div.others > img
+{
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+}
+
+.funiture-display > div.images > div.others > img:first-child
+{
+    margin-left: 0px;
+}
+
+.funiture-display > div.specifications
+{
+    margin-left: 10px;
+    width: 153px;
+    float: left;
+}
+
+.funiture-display > div.specifications > dl
+{
+    margin-top: 10px;
+}
+
+.funiture-display > div.specifications > dl > dt
+{
+    float: left;
+    clear: left;
+}
+
+.funiture-display > div.specifications > dl > dd
+{
+    margin-left: 5px;
+    float: left;
+}
+
+
+/* SEARCH */
+.funiture-search
+{
+}
+
+.funiture-search p.no-results
+{
+    font-style: italic;
+    color: #ff7200;
+    margin-bottom: 15px;
+}
+
+
+.furniture-search-results
+{
+}
+
+.furniture-search-results > section > a
+{
+    text-decoration: none;
+    display: block;
+    border: 1px solid transparent;
+    overflow: hidden;
+    padding: 4px;
+}
+
+.furniture-search-results > div.seperator
+{
+    margin: 4px 0px;
+    border-bottom: 1px dotted #ff4700;
+}
+
+.furniture-search-results > section > a *
+{
+    cursor: pointer;
+}
+
+.furniture-search-results > section > a:hover
+{
+    border: 1px solid #cecece;
+}
+
+.furniture-search-results > section > a > img
+{
+    width: 120px;
+    height: 90px;
+    float: left;
+    margin-right: 18px;
+}
+
+.furniture-search-results > section > a > div
+{
+    float: left;
+    width: 310px;
+}
+
+.furniture-search-results > section > a > div > h2
+{
+    border-bottom: 0px !important;
+    margin-bottom: 10px;
+}
+
+.furniture-search-results > section > a > div > p
+{
+    display: block;
+}
+
+/* CONTACT */
+
+.contact-opening-hours
+{
+}
+
+.contact-opening-hours > h2
+{
+    font-size: 10px;
+    color: Black;
+    font-weight: bold;
+}
+
+.contact-opening-hours > p > span
+{
+    display: block;
+}
+
+.contact-form
+{
+    display: block;
+    margin-top: 20px;
+}
+
+.contact-form textarea
+{
+    height: 80px;
+}
+
+
+
+.thumb
+{
+    cursor: pointer;
+}

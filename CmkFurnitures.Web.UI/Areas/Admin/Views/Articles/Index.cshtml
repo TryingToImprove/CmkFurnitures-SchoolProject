@@ -1,0 +1,10 @@
+﻿@model IndexArticlesViewModel
+@{
+    ViewBag.Title = "Index";
+}
+<div class="page-header">
+    @Html.ActionLink("Opret ny artikel", "Create", null, new { @class = "btn btn-success  pull-right" })
+    <h2>
+        Artikler</h2>
+</div>
+@{ Html.RenderPartial("_ArticlesTableView", Model.Articles); }

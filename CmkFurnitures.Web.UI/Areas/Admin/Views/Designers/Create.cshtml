@@ -1,0 +1,11 @@
+﻿@model CreateDesignersViewModel
+@{
+    ViewBag.JavaScriptValidation = true;
+}
+<div class="page-header">
+    <h2>
+        Opret designer</h2>
+</div>
+@using (Html.BeginForm("Create", "Designers", FormMethod.Post, new { @class = "form-horizontal" })){
+    @Html.PartialFor(model => model.DesignerForm, "_DesignerForm")
+}

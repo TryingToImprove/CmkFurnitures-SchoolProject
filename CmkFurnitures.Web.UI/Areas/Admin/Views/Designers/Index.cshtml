@@ -1,0 +1,41 @@
+﻿@model IndexDesignersViewModel
+<div class="page-header">
+    <p class="pull-right">
+        @Html.ActionLink("Opret nyt designer", "Create", null, new { @class = "btn btn-success" })
+    </p>
+    <h2>
+        Oversigt over designere</h2>
+</div>
+<table class="table table-stripe table-hover">
+    <tr>
+        <th>
+            Fornavn
+        </th>
+        <th>
+            Efternavn
+        </th>
+        <th>
+            Antal møbler
+        </th>
+        <th>
+        </th>
+    </tr>
+    @foreach (var item in Model.Designers)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @item.Furnitures.Count()
+            </td>
+            <td>
+                @Html.ActionLink("Rediger", "Update", new { id = item.DesignerId }) |
+                @Html.ActionLink("Slet", "Delete", new { id = item.DesignerId })
+            </td>
+        </tr>
+    }
+</table>

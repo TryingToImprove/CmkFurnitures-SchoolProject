@@ -1,0 +1,12 @@
+﻿@model UpdateDesignersViewModel
+@{
+    ViewBag.JavaScriptValidation = true;
+}
+<div class="page-header">
+    <h2>
+        Rediger designer</h2>
+</div>
+@using (Html.BeginForm("Update", "Designers", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.PartialFor(model => model.DesignerForm, "_DesignerForm")
+}

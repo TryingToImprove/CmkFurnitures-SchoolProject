@@ -1,0 +1,10 @@
+﻿@model CmkFurnitures.Web.UI.Areas.Admin.Models.IndexAdminsViewModel
+@{
+    ViewBag.Title = "Index";
+}
+<div class="page-header">
+    @Html.ActionLink("Opret ny bruger", "Create", "Admins", null, new { @class = "btn btn-success pull-right" })
+    <h2>
+        Administrators</h2>
+</div>
+@{ Html.RenderPartial("_AdminsTableView", Model.Admins); }

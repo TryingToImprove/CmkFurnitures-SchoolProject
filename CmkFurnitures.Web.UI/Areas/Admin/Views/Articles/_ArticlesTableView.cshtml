@@ -1,0 +1,35 @@
+﻿@model IEnumerable<CmkFurnitures.Domain.Article>
+<table class="table table-stripe table-hover">
+    <tr>
+        <th>
+            Overskrift
+        </th>
+        <th>
+            Forfatter
+        </th>
+        <th>
+            Tidspunkt
+        </th>
+        <th>
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                <a href="@Url.Action("Update", "Articles", new { id = item.ArticleId })">Rediger</a>
+                |
+                <a href="@Url.Action("Delete", "Articles", new { id = item.ArticleId })">Slet</a>
+            </td>
+        </tr>
+    }
+</table>

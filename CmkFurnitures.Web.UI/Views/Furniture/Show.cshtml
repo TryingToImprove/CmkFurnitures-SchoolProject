@@ -1,0 +1,68 @@
+﻿@model ShowFurnitureViewModel
+<article class="funiture-display">
+    <h1>
+        @Model.Furniture.Name</h1>
+    <div class="images">
+        <img alt="@Model.Furniture.Name" id="large" data-thumb="@Url.Content(Model.Furniture.ProfileImage.GetResizedImage(50, 50).VirtualPath)" src="@Url.Content(Model.Furniture.ProfileImage.GetResizedImage(300, 225).VirtualPath)" />
+        <div class="others">
+            <h1>
+                Andre varianter</h1>
+            @foreach (var item in Model.Furniture.Images.Where(x => x.ImageId != Model.Furniture.ProfileImageId))
+            {
+                <img alt="@Model.Furniture.Name" class="thumb" data-large="@Url.Content(item.GetResizedImage(300, 225).VirtualPath)" src="@Url.Content(item.GetResizedImage(50, 50).VirtualPath)" />
+            }
+        </div>
+    </div>
+    <div class="specifications">
+        <p>
+            @Model.Furniture.Text
+        </p>
+        <dl>
+            <dt>Pris: </dt>
+            <dd>
+                @string.Format("{0,10:#,##0.00} kr.", Model.Furniture.Price)
+            </dd>
+            <dt>Designer: </dt>
+            <dd>
+                @Model.Furniture.Designer.FullName
+            </dd>
+            <dt>Møbel serie: </dt>
+            <dd>
+                @Model.Furniture.FurnitureType.Name
+            </dd>
+            <dt>Design år: </dt>
+            <dd>
+                @Model.Furniture.DesignYear
+            </dd>
+            <dt>Varenummer: </dt>
+            <dd>
+                @Model.Furniture.PartNumber
+            </dd>
+        </dl>
+    </div>
+</article>
+@section CustomJavascript{
+    <script>
+        $(function () {
+
+            function swapLarge(thumb) {
+                var $thumb = $(thumb),
+                    $large = $("#large"),
+
+                    tempThumbSrc = $large.data("thumb"),
+                    tempLargeSrc = $large.attr("src");
+
+                $large.attr("src", $thumb.data("large"));
+                $large.data("thumb", $thumb.attr("src"));
+
+                $thumb.attr("src", tempThumbSrc);
+                $thumb.data("large", tempLargeSrc);
+            }
+
+            $(".thumb").click(function (e) {
+                swapLarge(this);
+            });
+
+        });
+    </script>
+}

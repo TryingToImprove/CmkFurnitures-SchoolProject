@@ -1,0 +1,71 @@
+﻿@model SearchFurnitureFormViewModel
+@using (Html.BeginForm("Search", "Furniture", FormMethod.Post, null))
+{
+    <div class="control-group">
+        <label>
+            Vare nummer:</label>
+        <div class="controls">
+            @Html.TextBoxFor(x => x.PartNumber)
+            <button type="submit" class="inline-search">
+                Søg</button>
+        </div>
+        @Html.ValidationMessageFor(x => x.PartNumber)
+    </div>
+    <div class="control-group">
+        <label>
+            Møbel serie:</label>
+        <div class="controls">
+            @foreach (var item in Model.Types)
+            {
+                <div class="checkbox-group">
+                    <input type="checkbox" value="@item.FurnitureTypeId" name="SearchForm.SelectedTypes"  />
+                    <label>
+                        @item.Name</label>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="control-group">
+        <label>
+            Designer:</label>
+        <div class="controls">
+            @Html.DropDownListFor(x => x.SelectedDesigner, new SelectList(Model.Designers, "Value", "Key"), "Alle")
+        </div>
+    </div>
+    <div class="control-group">
+        <label>
+            Design år:</label>
+        <div class="controls">
+            <div class="inline-group">
+                <label>
+                    min:</label>
+                @Html.TextBoxFor(x => x.Year.Min)
+            </div>
+            <div class="inline-group">
+                <label>
+                    max:</label>
+                @Html.TextBoxFor(x => x.Year.Max)
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label>
+            Pris:</label>
+        <div class="controls">
+            <div class="inline-group">
+                <label>
+                    min:</label>
+                @Html.TextBoxFor(x => x.Price.Min)
+            </div>
+            <div class="inline-group">
+                <label>
+                    max:</label>
+                @Html.TextBoxFor(x => x.Price.Min)
+            </div>
+        </div>
+    </div>
+    <div class="control-buttons-right">
+        <button type="submit">
+            Søg</button>
+    </div>
+}

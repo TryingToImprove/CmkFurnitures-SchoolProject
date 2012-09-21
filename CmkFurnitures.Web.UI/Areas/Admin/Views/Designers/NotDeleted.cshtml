@@ -1,0 +1,24 @@
+﻿@model CmkFurnitures.Web.UI.Areas.Admin.Models.NotDeletedDesignerViewModel
+@{
+    ViewBag.Title = "NotDeleted";
+}
+<div class="page-header">
+    <h2>
+        Kunne ikke slette designeren</h2>
+</div>
+<p>
+    Det var ikke muligt at slette designeren <b>@Model.Designer.FullName</b>
+</p>
+@if (Model.Designer.Furnitures.Count() > 0)
+{
+    <p>
+        Der findes referencer til designeren..
+    </p>
+}
+@if (Model.Designer.Furnitures.Count() > 0)
+{
+    <h3>
+        Møbler der har reference til designeren
+    </h3>
+    Html.RenderPartial("~/Areas/Admin/Views/Furnitures/_FurnituresTableView.cshtml", Model.Designer.Furnitures);
+}

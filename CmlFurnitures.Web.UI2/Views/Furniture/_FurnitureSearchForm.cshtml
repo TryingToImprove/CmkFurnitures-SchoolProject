@@ -1,0 +1,85 @@
+﻿@model SearchFurnitureFormViewModel
+@using (Html.BeginForm("Search", "Furniture", FormMethod.Get, null))
+{
+    <div class="control-group">
+        <label>
+            Vare nummer:</label>
+        <div class="controls">
+            @Html.TextBoxFor(x=> x.PartNumber)
+            <button type="submit" class="inline-search">
+                Søg</button>
+        </div>
+        @Html.CustomValidation(x => x.PartNumber)
+    </div>
+    <div class="control-group">
+        <label>
+            Møbel serie:</label>
+        <div class="controls">
+            <div class="checkbox-group">
+                <input type="checkbox" />
+                <label>
+                    Sofa</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" />
+                <label>
+                    Sofabord</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" />
+                <label>
+                    Spisestol</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" />
+                <label>
+                    Spisebord</label>
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label>
+            Designer:</label>
+        <div class="controls">
+            <select>
+                <option>Alle</option>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label>
+            Design år:</label>
+        <div class="controls">
+            <div class="inline-group">
+                <label>
+                    min:</label>
+                <input type="text" />
+            </div>
+            <div class="inline-group">
+                <label>
+                    max:</label>
+                <input type="text" />
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label>
+            Pris:</label>
+        <div class="controls">
+            <div class="inline-group">
+                <label>
+                    min:</label>
+                <input type="text" />
+            </div>
+            <div class="inline-group">
+                <label>
+                    max:</label>
+                <input type="text" />
+            </div>
+        </div>
+    </div>
+    <div class="control-buttons-right">
+        <button type="submit">
+            Søg</button>
+    </div>
+}

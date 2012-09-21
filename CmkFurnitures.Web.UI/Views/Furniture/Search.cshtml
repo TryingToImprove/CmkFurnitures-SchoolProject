@@ -1,0 +1,14 @@
+﻿@model SearchFurnitureViewModel
+@{
+    ViewBag.Title = "Search";
+}
+<div class="funiture-search">
+    @if (ViewBag.NoResults != null && ViewBag.NoResults)
+    {
+        <p class="no-results">
+            Der er desværre ikke nogen emner der matcher dine kriterier.<br />
+            Vi anbefaler at du udvider din søgning og prøver igen.
+        </p>
+    }
+    @{ Html.RenderPartial("_FurnitureSearchForm", Model.SearchForm); }
+</div>
